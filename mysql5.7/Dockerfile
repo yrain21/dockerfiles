@@ -1,9 +1,13 @@
 FROM mysql:5.7
 
-COPY my.cnf /etc/mysql/conf.d/my.cnf
+ENV MYSQL_ROOT_PASSWORD=123456
 
-RUN chmod 0777 /etc/mysql/conf.d/my.cnf
+#COPY my.cnf /etc/mysql/conf.d/my.cnf
+
+#RUN chmod 644 /etc/mysql/conf.d/my.cnf
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306
 
-CMD ["entrypoint.sh"]
+CMD ["mysqld"]
